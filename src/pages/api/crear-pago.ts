@@ -28,7 +28,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (plan === 'pago-unico') {
       sessionConfig = {
-        automatic_payment_methods: { enabled: true },
         customer_email: email,
         line_items: [
           {
