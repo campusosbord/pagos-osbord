@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Pago Cancelado — Instituto Osbord">
+  <Header />
+
+  <main class="cancel-container">
+    <div class="container container-sm">
+      <div class="cancel-card animate-scale-in text-center">
+        <div class="alert-icon-wrapper">
+          <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+
+        <h1 class="cancel-title">El pago no se pudo completar</h1>
+        <div class="gold-divider"></div>
+        
+        <p class="cancel-message">
+          La transacción ha sido cancelada o no pudo procesarse correctamente por parte de la pasarela de pagos. No se ha realizado ningún cargo a tu tarjeta.
+        </p>
+
+        <div class="actions-wrapper">
+          <a href="/" class="btn btn-gold btn-lg btn-full-mobile">
+            Volver a intentarlo
+          </a>
+          <a href="mailto:soporte@instituto-osbord.com" class="btn btn-outline btn-lg btn-full-mobile">
+            Contactar a soporte
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .cancel-container {
+    padding: var(--space-4xl) 0;
+    background: radial-gradient(circle at top, rgba(239, 68, 68, 0.03) 0%, rgba(27, 38, 59, 0.02) 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  .cancel-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-xl);
+  }
+  .alert-icon-wrapper {
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+  }
+  .alert-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--error);
+  }
+  .cancel-title {
+    margin-top: var(--space-sm);
+  }
+  .cancel-message {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    max-width: 580px;
+    margin: var(--space-md) auto var(--space-2xl);
+  }
+  .actions-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+  @media (max-width: 768px) {
+    .cancel-card {
+      padding: var(--space-xl);
+    }
+    .actions-wrapper {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .btn-full-mobile {
+      width: 100%;
+    }
+  }
+</style>

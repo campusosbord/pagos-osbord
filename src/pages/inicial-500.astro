@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SecurityBadges from '../components/SecurityBadges.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Completar Pago Seguro — Instituto Osbord">
+  <Header />
+
+  <main class="page-container">
+    <div class="container container-sm">
+      <div class="plan-detail-card animate-fade-in-up text-center">
+        <div class="detail-header">
+          <span class="badge badge-gold">Pago Directo</span>
+          <h1 class="plan-title">Cuota Inicial</h1>
+          <div class="gold-divider"></div>
+          <p class="plan-subtitle">Pago inicial de inscripción para el Plan de 4 Meses.</p>
+        </div>
+
+        <div class="price-box" style="margin: 2rem 0;">
+          <span class="price-label">Monto a Pagar</span>
+          <div class="price-display" style="display: flex; justify-content: center; align-items: baseline; margin: 0.5rem 0; color: var(--navy-deep);">
+            <span class="currency" style="font-size: 1.25rem; font-weight: 600; color: var(--gold); margin-right: 0.25rem;">USD</span>
+            <span class="amount" style="font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700;">500</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+          <a href="https://buy.stripe.com/00wfZh59uforbpKbhI8bS02" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+            Proceder al Pago Seguro
+          </a>
+        </div>
+        
+        <p class="secure-footer-text" style="font-size: 0.8rem; color: var(--gray-500); margin-top: 1rem;">
+          Serás redirigido de forma segura a la pasarela de pagos de Stripe.
+        </p>
+      </div>
+
+      <SecurityBadges />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-container {
+    padding: 1rem 0 var(--space-3xl);
+    background: radial-gradient(circle at top, rgba(197, 160, 89, 0.04) 0%, rgba(27, 38, 59, 0.02) 100%);
+  }
+  .plan-detail-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-3xl);
+  }
+  .plan-title {
+    margin-top: var(--space-sm);
+  }
+  .plan-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+  }
+  .price-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 768px) {
+    .plan-detail-card {
+      padding: var(--space-lg) var(--space-md);
+    }
+  }
+</style>

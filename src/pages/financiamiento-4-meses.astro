@@ -1,0 +1,264 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import EmailModal from '../components/EmailModal.astro';
+import SecurityBadges from '../components/SecurityBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Financiamiento 4 Meses — Instituto Osbord">
+  <Header />
+
+  <main class="page-container">
+    <div class="container">
+      <div class="plan-detail-card animate-fade-in-up">
+        <div class="detail-header text-center">
+          <span class="badge badge-gold">Plan Flexible 4 Meses</span>
+          <h1 class="plan-title">Financiamiento 4 Meses</h1>
+          <div class="gold-divider"></div>
+          <p class="plan-subtitle">Inscríbete hoy con $500 y distribuye el resto en 3 cómodas cuotas automáticas.</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="info-column">
+            <h3>Plan de Pagos Planificado</h3>
+            
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-badge active">1</div>
+                <div class="timeline-content">
+                  <h4>Hoy (Inscripción)</h4>
+                  <p class="price-highlight">$500 USD</p>
+                  <p class="desc">Pago inicial único para activar tu cuenta del alumno al instante.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-badge">2</div>
+                <div class="timeline-content">
+                  <h4>Mes 1 (Día 30)</h4>
+                  <p class="price-highlight">$300 USD</p>
+                  <p class="desc">Primera cuota del financiamiento procesada de forma automática.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-badge">3</div>
+                <div class="timeline-content">
+                  <h4>Mes 2 (Día 60)</h4>
+                  <p class="price-highlight">$300 USD</p>
+                  <p class="desc">Segunda cuota del financiamiento procesada de forma automática.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-badge">4</div>
+                <div class="timeline-content">
+                  <h4>Mes 3 (Día 90)</h4>
+                  <p class="price-highlight">$300 USD</p>
+                  <p class="desc">Tercera y última cuota mensual.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benefits-included" style="margin-top: var(--space-xl);">
+              <h3 style="margin-bottom: var(--space-md);">Beneficios incluidos:</h3>
+              <ul class="detail-features" style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
+                <li style="display: flex; align-items: center; gap: var(--space-md); color: var(--gray-600); font-size: 1.05rem;">
+                  <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 1.35rem; height: 1.35rem; color: var(--gold); flex-shrink: 0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Acceso completo inmediato</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-md); color: var(--gray-600); font-size: 1.05rem;">
+                  <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 1.35rem; height: 1.35rem; color: var(--gold); flex-shrink: 0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Soporte prioritario 24/7</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-md); color: var(--gray-600); font-size: 1.05rem;">
+                  <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 1.35rem; height: 1.35rem; color: var(--gold); flex-shrink: 0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Certificación oficial al finalizar</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-md); color: var(--gray-600); font-size: 1.05rem;">
+                  <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 1.35rem; height: 1.35rem; color: var(--gold); flex-shrink: 0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Curso de idioma gratis</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-md); color: var(--gray-600); font-size: 1.05rem;">
+                  <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 1.35rem; height: 1.35rem; color: var(--gold); flex-shrink: 0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Acceso a la comunidad privada de alumnos y egresados</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="cta-column text-center">
+            <div class="price-box">
+              <span class="price-label">Acceso Hoy por Solo</span>
+              <div class="price-display">
+                <span class="currency">USD</span>
+                <span class="amount">500</span>
+              </div>
+              <span class="badge badge-navy">Cuota Fija de $300/mes</span>
+            </div>
+            
+            <button id="open-modal-btn" class="btn btn-gold btn-full btn-lg">
+              Comenzar Financiamiento 4 Meses
+            </button>
+            
+            <p class="secure-footer-text">Sin trámites complejos. Aprobación inmediata.</p>
+          </div>
+        </div>
+      </div>
+
+      <SecurityBadges />
+      <FAQ />
+    </div>
+  </main>
+
+  <EmailModal plan="financiamiento-4" planName="Financiamiento 4 Meses ($500 + 3x$300 USD)" />
+  <Footer />
+</Layout>
+
+<script>
+  const openBtn = document.getElementById('open-modal-btn');
+  const modal = document.getElementById('email-modal');
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+  }
+</script>
+
+<style>
+  .page-container {
+    padding: 1rem 0 var(--space-3xl);
+    background: radial-gradient(circle at top, rgba(197, 160, 89, 0.04) 0%, rgba(27, 38, 59, 0.02) 100%);
+  }
+  .plan-detail-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-3xl);
+  }
+  .detail-header {
+    margin-bottom: var(--space-2xl);
+  }
+  .plan-title {
+    margin-top: var(--space-sm);
+  }
+  .plan-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+  .info-column h3 {
+    margin-bottom: var(--space-lg);
+  }
+  .timeline {
+    position: relative;
+    border-left: 2px solid var(--gray-200);
+    padding-left: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .timeline-item {
+    position: relative;
+  }
+  .timeline-badge {
+    position: absolute;
+    left: calc(-1 * var(--space-xl) - 13px);
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background-color: var(--gray-200);
+    color: var(--gray-500);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--white);
+    box-shadow: var(--shadow-sm);
+  }
+  .timeline-badge.active {
+    background-color: var(--gold);
+    color: var(--white);
+    box-shadow: var(--shadow-gold);
+  }
+  .timeline-content h4 {
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 0.15rem;
+  }
+  .price-highlight {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+  }
+  .desc {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+  }
+  .cta-column {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+  }
+  .price-box {
+    margin-bottom: var(--space-xl);
+  }
+  .price-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .price-display {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: var(--space-sm) 0;
+    color: var(--navy-deep);
+  }
+  .currency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-right: var(--space-xs);
+  }
+  .amount {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+  .secure-footer-text {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: var(--space-md);
+  }
+  @media (max-width: 768px) {
+    .detail-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plan-detail-card {
+      padding: var(--space-lg) var(--space-md);
+    }
+  }
+</style>

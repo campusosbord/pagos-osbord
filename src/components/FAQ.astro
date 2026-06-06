@@ -1,0 +1,112 @@
+---
+const faqs = [
+  {
+    question: "¿Cuándo se realizarán los cargos mensuales?",
+    answer: "El primer cargo de inscripción se realiza hoy de forma segura. Las cuotas restantes se programan de manera automática cada 30 días naturales. Por ejemplo, si te inscribes hoy con el financiamiento de 4 meses, pagarás la inicial hoy, y la primera cuota de $300 se procesará exactamente dentro de un mes. El sistema cancelará la suscripción de forma automática tras cobrarse la última cuota."
+  },
+  {
+    question: "¿Qué métodos de pago son aceptados?",
+    answer: "Aceptamos todas las principales tarjetas de crédito y débito (Visa, Mastercard, American Express, Diners Club, Discover) procesadas de forma nativa e instantánea a través de la plataforma segura de Stripe. También puedes pagar con billeteras digitales compatibles según tu país de residencia."
+  },
+  {
+    question: "¿Los pagos a cuotas tienen recargo oculto?",
+    answer: "No. El total acumulado está perfectamente desglosado en el plan de financiamiento correspondiente. No hay cargos administrativos adicionales, tasas de interés variables ni penalizaciones por pago anticipado. Las cuotas son fijas durante todo el periodo."
+  },
+  {
+    question: "¿Es seguro introducir mi tarjeta en este sitio web?",
+    answer: "Totalmente. Toda la información de tu tarjeta de crédito o débito viaja cifrada mediante una conexión SSL de 256 bits y se procesa directamente en los servidores seguros e integrados de Stripe, que cumple con el estándar PCI-DSS de Nivel 1. El Instituto Osbord nunca almacena ni tiene acceso directo a los números de tu tarjeta."
+  }
+];
+---
+
+<div class="faq-container animate-fade-in-up">
+  <div class="text-center">
+    <span class="badge badge-gold">Resolviendo Dudas</span>
+    <h2 class="faq-section-title">Preguntas Frecuentes</h2>
+    <div class="gold-divider"></div>
+    <p class="faq-section-subtitle">Todo lo que necesitas saber sobre nuestras modalidades de pago y seguridad.</p>
+  </div>
+
+  <div class="faq-list">
+    {faqs.map((faq, index) => (
+      <details class="faq-item" name="faq-group">
+        <summary class="faq-question">
+          <span>{faq.question}</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
+        <div class="faq-answer-content">
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>
+
+<style>
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-section-title {
+    margin-top: var(--space-sm);
+    color: var(--navy);
+  }
+  .faq-section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-2xl);
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .faq-item {
+    background-color: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+  }
+  .faq-item[open] {
+    border-color: var(--gold);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.08);
+  }
+  .faq-question {
+    padding: var(--space-lg);
+    font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--gold);
+    transition: transform var(--transition-base);
+  }
+  .faq-item[open] .arrow-icon {
+    transform: rotate(180deg);
+  }
+  .faq-answer-content {
+    padding: 0 var(--space-lg) var(--space-lg) var(--space-lg);
+    border-top: 1px solid rgba(0, 0, 0, 0.02);
+    animation: slideDown 0.3s ease-out forwards;
+  }
+  .faq-answer-content p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PricingCard from '../components/PricingCard.astro';
+import SecurityBadges from '../components/SecurityBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Instituto Osbord — Inscripciones y Planes de Pago">
+  <Header />
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container text-center">
+        <h1 class="hero-title animate-fade-in-up">Invierte en tu Futuro Profesional</h1>
+        <p class="hero-subtitle animate-fade-in-up">
+          Elige el plan de pago que mejor se adapte a tus necesidades financieras y asegura tu cupo en el Instituto Osbord de manera rápida, automatizada y 100% segura.
+        </p>
+        <div class="gold-divider"></div>
+      </div>
+    </section>
+
+    <!-- Pricing Cards Grid -->
+    <section class="pricing-section">
+      <div class="container">
+        <div class="grid-3 stagger">
+          
+          <!-- PAGO ÚNICO -->
+          <PricingCard
+            plan="pago-unico"
+            title="Pago Único Premium"
+            price="1,250"
+            description="Acceso inmediato y permanente sin cuotas recurrentes ni suscripciones."
+            features={[
+              "Acceso ilimitado de por vida",
+              "Soporte prioritario 24/7",
+              "Certificación profesional oficial",
+              "Curso de idioma gratis",
+              "Acceso a la comunidad privada de alumnos y egresados",
+              "Sin cargos mensuales recurrentes",
+              "Ahorro de $150 a $350 comparado con financiamientos"
+            ]}
+            badge="Mejor Valor"
+            ctaLink="/pago-unico"
+          />
+
+          <!-- FINANCIAMIENTO 4 MESES -->
+          <PricingCard
+            plan="financiamiento-4"
+            title="Inicial + 3 cuotas mensuales"
+            price="500"
+            subprice="+ 3 cuotas mensuales de $300"
+            description="Distribuye tu inversión en cómodas cuotas de forma flexible."
+            features={[
+              "Acceso completo inmediato",
+              "Soporte prioritario 24/7",
+              "Certificación oficial al finalizar",
+              "Curso de idioma gratis",
+              "Acceso a la comunidad privada de alumnos y egresados",
+              "3 cuotas mensuales de $300"
+            ]}
+            highlighted={true}
+            badge="El Más Elegido"
+            ctaLink="/financiamiento-4-meses"
+          />
+
+          <!-- FINANCIAMIENTO 6 MESES -->
+          <PricingCard
+            plan="financiamiento-6"
+            title="Inicial + 5 cuotas mensuales"
+            price="400"
+            subprice="+ 5 cuotas mensuales de $240"
+            description="La cuota de acceso más baja para comenzar hoy mismo tu formación."
+            features={[
+              "Acceso completo inmediato",
+              "Soporte prioritario 24/7",
+              "Certificación oficial al finalizar",
+              "Curso de idioma gratis",
+              "Acceso a la comunidad privada de alumnos y egresados",
+              "5 cuotas mensuales de $240"
+            ]}
+            ctaLink="/financiamiento-6-meses"
+          />
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust signals and badging -->
+    <section class="trust-section">
+      <div class="container">
+        <SecurityBadges />
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <FAQ />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .main-content {
+    background-color: var(--gray-50);
+  }
+  .hero-section {
+    padding: 1rem 0 var(--space-xl);
+    background: radial-gradient(circle at top, rgba(197, 160, 89, 0.05) 0%, rgba(27, 38, 59, 0.02) 100%);
+  }
+  .hero-title {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+  }
+  .hero-subtitle {
+    max-width: 720px;
+    margin: 0 auto var(--space-xl);
+    font-size: 1.15rem;
+    color: var(--gray-600);
+  }
+  .pricing-section {
+    padding: var(--space-xl) 0 var(--space-2xl);
+  }
+  .trust-section {
+    padding: var(--space-lg) 0;
+  }
+  .faq-section {
+    padding: var(--space-3xl) 0;
+  }
+</style>

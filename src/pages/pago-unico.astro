@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import EmailModal from '../components/EmailModal.astro';
+import SecurityBadges from '../components/SecurityBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Pago Único Premium — Instituto Osbord">
+  <Header />
+
+  <main class="page-container">
+    <div class="container">
+      <div class="plan-detail-card animate-fade-in-up">
+        <div class="detail-header text-center">
+          <span class="badge badge-gold">Plan Premium</span>
+          <h1 class="plan-title">Pago Único Premium</h1>
+          <div class="gold-divider"></div>
+          <p class="plan-subtitle">Acceso de por vida sin cargos recurrentes ni suscripciones.</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="info-column">
+            <h3>¿Qué incluye tu plan?</h3>
+            <ul class="detail-features">
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Acceso ilimitado para siempre a todos los módulos</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Soporte uno-a-uno prioridad VIP con mentores</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Certificado profesional oficial emitido por Instituto Osbord</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Curso de idioma gratis</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Acceso a la comunidad privada de alumnos y egresados</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Actualizaciones de contenido gratuitas para siempre</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="cta-column text-center">
+            <div class="price-box">
+              <span class="price-label">Inversión Única Hoy</span>
+              <div class="price-display">
+                <span class="currency">USD</span>
+                <span class="amount">1,250</span>
+              </div>
+              <span class="badge badge-success">Ahorra hasta $350</span>
+            </div>
+            
+            <button id="open-modal-btn" class="btn btn-gold btn-full btn-lg">
+              Comenzar Inscripción
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <SecurityBadges />
+      <FAQ />
+    </div>
+  </main>
+
+  <EmailModal plan="pago-unico" planName="Pago Único Premium ($1,250 USD)" />
+  <Footer />
+</Layout>
+
+<script>
+  const openBtn = document.getElementById('open-modal-btn');
+  const modal = document.getElementById('email-modal');
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+  }
+</script>
+
+<style>
+  .page-container {
+    padding: 1rem 0 var(--space-3xl);
+    background: radial-gradient(circle at top, rgba(197, 160, 89, 0.04) 0%, rgba(27, 38, 59, 0.02) 100%);
+  }
+  .plan-detail-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-3xl);
+  }
+  .detail-header {
+    margin-bottom: var(--space-2xl);
+  }
+  .plan-title {
+    margin-top: var(--space-sm);
+  }
+  .plan-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+  .info-column h3 {
+    margin-bottom: var(--space-lg);
+  }
+  .detail-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .detail-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    color: var(--gray-600);
+    font-size: 1.05rem;
+  }
+  .check-svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .cta-column {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+  }
+  .price-box {
+    margin-bottom: var(--space-xl);
+  }
+  .price-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .price-display {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: var(--space-sm) 0;
+    color: var(--navy-deep);
+  }
+  .currency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-right: var(--space-xs);
+  }
+  .amount {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+  .secure-footer-text {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: var(--space-md);
+  }
+  @media (max-width: 768px) {
+    .detail-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plan-detail-card {
+      padding: var(--space-lg) var(--space-md);
+    }
+  }
+</style>

@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '');
+
+
+const sessionId = Astro.url.searchParams.get('session_id') || '';
+const planParam = Astro.url.searchParams.get('plan') || '';
+
+let customerEmail = '';
+let isSuccess = false;
+let displayPlanName = '';
+
+if (sessionId) {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (session.payment_status === 'paid' || session.payment_status === 'no_payment_required') {
+      isSuccess = true;
+      customerEmail = session.customer_details?.email || '';
+    }
+  } catch (err) {
+    console.error('Error al recuperar sesión en página de gracias:', err);
+  }
+}
+
+if (planParam === 'pago-unico') {
+  displayPlanName = 'Pago Único Premium ($1,250 USD)';
+} else if (planParam === 'financiamiento-4') {
+  displayPlanName = 'Plan Financiamiento 4 Meses ($500 + 3x$300 USD)';
+} else if (planParam === 'financiamiento-6') {
+  displayPlanName = 'Plan Financiamiento 6 Meses ($400 + 5x$240 USD)';
+}
+---
+
+<Layout title="¡Gracias por tu inscripción! — Instituto Osbord">
+  <Header />
+
+  <main class="thanks-container">
+    <div class="container container-sm">
+      {isSuccess ? (
+        <div class="thanks-card animate-scale-in text-center">
+          <div class="success-icon-wrapper">
+            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+
+          <span class="badge badge-success">Pago Confirmado</span>
+          <h1 class="thanks-title">¡Bienvenido al Instituto Osbord!</h1>
+          <div class="gold-divider"></div>
+          
+          <p class="thanks-message">
+            Tu inscripción se ha procesado con éxito. Hemos enviado un correo de bienvenida a 
+            <strong>{customerEmail}</strong> con las credenciales de acceso a la plataforma de estudios.
+          </p>
+
+          <div class="plan-summary-box">
+            <h4>Resumen de tu Inscripción</h4>
+            <p class="plan-name">{displayPlanName}</p>
+            {planParam !== 'pago-unico' && (
+              <p class="notice-detail">
+                * Tu suscripción ha sido configurada y programada con cuotas fijas automatizadas. El plan se completará una vez realizados todos los pagos.
+              </p>
+            )}
+          </div>
+
+          <div class="next-steps text-center">
+            <h3>¿Qué hacer ahora?</h3>
+            <ol class="steps-list">
+              <li>Revisa tu bandeja de entrada (y la carpeta de spam).</li>
+              <li>Sigue las instrucciones del email para activar tu cuenta.</li>
+              <li>Comienza a estudiar hoy mismo.</li>
+            </ol>
+          </div>
+
+          <a href="https://instituto-osbord-estudiante.com" class="btn btn-gold btn-lg">
+            Ir al Portal de Estudiante
+          </a>
+        </div>
+      ) : (
+        <div class="thanks-card animate-scale-in text-center error-state">
+          <div class="error-icon-wrapper">
+            <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h1 class="thanks-title">Verificando Inscripción...</h1>
+          <p class="thanks-message">Estamos procesando tu pago. Si no eres redirigido en unos momentos, por favor contacta a nuestro equipo de soporte.</p>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .thanks-container {
+    padding: var(--space-4xl) 0;
+    background: radial-gradient(circle at top, rgba(16, 185, 129, 0.04) 0%, rgba(27, 38, 59, 0.02) 100%);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+  .thanks-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-xl);
+  }
+  .success-icon-wrapper {
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: rgba(16, 185, 129, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+  }
+  .success-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--success);
+  }
+  .error-icon-wrapper {
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+  }
+  .error-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--error);
+  }
+  .thanks-title {
+    margin-top: var(--space-sm);
+  }
+  .thanks-message {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: var(--space-md) auto;
+  }
+  .plan-summary-box {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    text-align: left;
+  }
+  .plan-summary-box h4 {
+    color: var(--navy-deep);
+    margin-bottom: var(--space-xs);
+  }
+  .plan-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+  }
+  .notice-detail {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: var(--space-sm);
+    line-height: 1.4;
+  }
+  .next-steps {
+    margin-bottom: var(--space-2xl);
+    text-align: left;
+  }
+  .next-steps h3 {
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin-bottom: var(--space-md);
+  }
+  .steps-list {
+    padding-left: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    color: var(--gray-600);
+  }
+  @media (max-width: 768px) {
+    .thanks-card {
+      padding: var(--space-xl);
+    }
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+interface Props {
+  plan: 'pago-unico' | 'financiamiento-4' | 'financiamiento-6';
+  title: string;
+  price: string;
+  subprice?: string;
+  description: string;
+  features: string[];
+  badge?: string;
+  highlighted?: boolean;
+  ctaLink: string;
+}
+
+const { plan, title, price, subprice, description, features, badge, highlighted = false, ctaLink } = Astro.props;
+---
+
+<div class={`card-pricing ${highlighted ? 'pricing-highlighted' : ''} animate-fade-in-up`}>
+  {badge && <div class="badge-premium">{badge}</div>}
+  
+  <div class="pricing-header">
+    <h3 class="plan-title">{title}</h3>
+    <p class="plan-description">{description}</p>
+    <div class="price-container">
+      <span class="currency">USD</span>
+      <span class="price-val">{price}</span>
+    </div>
+    {subprice && <p class="subprice-text">{subprice}</p>}
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <ul class="features-list">
+    {features.map((feature) => (
+      <li class="feature-item">
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <div class="pricing-footer">
+    <a href={ctaLink} class={`btn btn-full ${highlighted ? 'btn-gold' : 'btn-outline'}`}>
+      Inscribirse en este Plan
+    </a>
+    <div class="secure-checkout-notice">
+      <svg class="secure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span>Pago Seguro por Stripe · Encriptado SSL</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-pricing {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--gray-200);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+  .card-pricing:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-6px);
+  }
+  .pricing-highlighted {
+    border: 2px solid var(--gold);
+    box-shadow: var(--shadow-gold), var(--shadow-card);
+  }
+  .pricing-highlighted:hover {
+    box-shadow: 0 8px 30px rgba(197, 160, 89, 0.3), var(--shadow-card-hover);
+  }
+  .badge-premium {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--white);
+    padding: 0.35rem 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+  }
+  .pricing-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+  }
+  .plan-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: var(--space-xs);
+  }
+  .plan-description {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    min-height: 2.5rem;
+  }
+  .price-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: var(--space-md) 0 0;
+    color: var(--navy-deep);
+  }
+  .currency {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-right: 0.25rem;
+  }
+  .price-val {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  .subprice-text {
+    font-size: 0.85rem;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-top: var(--space-xs);
+  }
+  .features-list {
+    list-style: none;
+    margin: var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    flex-grow: 1;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.95rem;
+    color: var(--gray-600);
+  }
+  .check-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .pricing-footer {
+    margin-top: auto;
+  }
+  .secure-checkout-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: var(--space-md);
+  }
+  .secure-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: var(--success);
+  }
+  @media (max-width: 768px) {
+    .card-pricing {
+      padding: var(--space-lg) var(--space-md);
+    }
+  }
+</style>
